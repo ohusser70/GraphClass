@@ -1,7 +1,7 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 #include "Link.h"
-#include <list>
+#include <List>
 #include <stdlib.h>
 /*
     C'est la classe Sommet qui contient
@@ -12,6 +12,8 @@
 
 
 */
+class Link;
+
 class Vertex
 {
   public:
@@ -19,7 +21,7 @@ class Vertex
     virtual ~Vertex();
   protected:
   private:
-    std::List<Link> AdjacencyList;
+    std::list<Link> AdjacencyList;
     char labek;
 };
 

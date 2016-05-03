@@ -1,6 +1,7 @@
 #ifndef LINK_H
 #define LINK_H
 #include "Vertex.h"
+class Vertex;
 
 /// classe lien entre les sommets (maillon des listes d'adjacence)
 class Link

@@ -6,12 +6,12 @@
 	"Vertex.h"
 	"Link.h"
 
-1462268068 c:\temp\_cpp\testgit\graphclass\vertex.h
+1462268447 c:\temp\_cpp\testgit\graphclass\vertex.h
 	"Link.h"
-	<list>
+	<List>
 	<stdlib.h>
 
-1462267814 c:\temp\_cpp\testgit\graphclass\link.h
+1462268387 c:\temp\_cpp\testgit\graphclass\link.h
 	"Vertex.h"
 
 1462267785 source:c:\temp\_cpp\testgit\graphclass\link.cpp
