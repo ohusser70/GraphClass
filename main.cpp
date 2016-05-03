@@ -1,12 +1,14 @@
 #include <iostream>
 #include <stdlib.h>   // pour les listes
 #include <List>
+#include "Graph.h"
+
 using namespace std;
 
 int main()
 {
     list<int> valeurs ={1,2,3,5,8,13,21,34};  //declaration et initialisation d'une liste
-
+    Graph villes;
     // range based for loop (C++11) STYLE
     for (int i: valeurs)
       cout << i << ", ";

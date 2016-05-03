@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1462267240 source:c:\temp\_cpp\testgit\graphclass\graph.cpp
+	"Graph.h"
+
+1462267985 c:\temp\_cpp\testgit\graphclass\graph.h
+	"Vertex.h"
+	"Link.h"
+
+1462268068 c:\temp\_cpp\testgit\graphclass\vertex.h
+	"Link.h"
+	<list>
+	<stdlib.h>
+
+1462267814 c:\temp\_cpp\testgit\graphclass\link.h
+	"Vertex.h"
+
+1462267785 source:c:\temp\_cpp\testgit\graphclass\link.cpp
+	"Link.h"
+
+1462267369 source:c:\temp\_cpp\testgit\graphclass\main.cpp
+	<iostream>
+	<stdlib.h>
+	<List>
+	"Graph.h"
+
+1462267087 source:c:\temp\_cpp\testgit\graphclass\vertex.cpp
+	"Vertex.h"
+
