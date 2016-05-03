@@ -10,6 +10,7 @@ class Graph
     Graph(int nb=11);
     virtual ~Graph();
     void showGraph();
+    bool AddLink(char linkStart, char linkEnd);
   protected:
   private:
     int nbSommets;

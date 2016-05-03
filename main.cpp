@@ -8,8 +8,10 @@ using namespace std;
 int main()
 {
     Graph villes;
-    villes.showGraph();
-    //villes.AddLink('A','B');          //todo implement the AddLink method
+    villes.AddLink('A','B');
+    villes.AddLink('A','K');
+    villes.AddLink('B','A');
+    villes.AddLink('D','F');
     villes.showGraph();
 
     /*
