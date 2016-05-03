@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 #include "Vertex.h"
+#include <iostream>
 #include "Link.h"
 
 class Graph
@@ -8,7 +9,7 @@ class Graph
   public:
     Graph(int nb=11);
     virtual ~Graph();
-    void showGraph(){}
+    void showGraph();
   protected:
   private:
     int nbSommets;

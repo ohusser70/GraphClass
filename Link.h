@@ -8,6 +8,7 @@ class Link
 {
   public:
     Link(Vertex& target, int w=1);
+    Vertex& getNeighbour(){return neighbourVertex;}
     virtual ~Link();
   protected:
   private:

@@ -7,9 +7,14 @@ using namespace std;
 
 int main()
 {
-    list<int> valeurs ={1,2,3,5,8,13,21,34};  //declaration et initialisation d'une liste
     Graph villes;
+    villes.showGraph();
+    //villes.AddLink('A','B');          //todo implement the AddLink method
+    villes.showGraph();
+
+    /*
     // range based for loop (C++11) STYLE
+    list<int> valeurs ={1,2,3,5,8,13,21,34};  //declaration et initialisation d'une liste
     for (int i: valeurs)
       cout << i << ", ";
     cout <<  endl;
@@ -22,6 +27,6 @@ int main()
     for(; it != valeurs.end();it++)
       cout << *it << "--";
     cout <<  endl;
-
+*/
     return 0;
 }

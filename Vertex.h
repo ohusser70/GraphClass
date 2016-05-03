@@ -18,11 +18,14 @@ class Vertex
 {
   public:
     Vertex();
+    char getLabel(){return label;}
+    std::list<Link>& getNeighboursList(){return AdjacencyList;}
     virtual ~Vertex();
   protected:
   private:
     std::list<Link> AdjacencyList;
-    char labek;
+    char label;
+    static int counter;
 };
 
 #endif // VERTEX_H
