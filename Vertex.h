@@ -19,12 +19,18 @@ class Vertex
   public:
     Vertex();
     char getLabel(){return label;}
+    bool wasVisited(){return visited;}
+    bool wasEncountered(){return encountered;}
     std::list<Link>& getNeighboursList(){return AdjacencyList;}
     virtual ~Vertex();
   protected:
   private:
+    // the list of neighbor vertices
     std::list<Link> AdjacencyList;
+    // the vertex identifier (and information for the moment)
     char label;
+    bool visited;
+    bool encountered;
     static int counter;
 };
 

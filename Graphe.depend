@@ -26,7 +26,7 @@
 1462267087 source:c:\temp\_cpp\testgit\graphclass\vertex.cpp
 	"Vertex.h"
 
-1462291766 source:c:\temp\testgit\graphclass\graph.cpp
+1462303394 source:c:\temp\testgit\graphclass\graph.cpp
 	"Graph.h"
 
 1462291573 c:\temp\testgit\graphclass\graph.h
@@ -34,7 +34,7 @@
 	<iostream>
 	"Link.h"
 
-1462292194 c:\temp\testgit\graphclass\vertex.h
+1462303266 c:\temp\testgit\graphclass\vertex.h
 	"Link.h"
 	<List>
 	<stdlib.h>
@@ -45,12 +45,12 @@
 1462291275 source:c:\temp\testgit\graphclass\link.cpp
 	"Link.h"
 
-1462291855 source:c:\temp\testgit\graphclass\main.cpp
+1462292488 source:c:\temp\testgit\graphclass\main.cpp
 	<iostream>
 	<stdlib.h>
 	<List>
 	"Graph.h"
 
-1462291503 source:c:\temp\testgit\graphclass\vertex.cpp
+1462303113 source:c:\temp\testgit\graphclass\vertex.cpp
 	"Vertex.h"
 
