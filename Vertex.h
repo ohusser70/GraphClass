@@ -1,6 +1,7 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 #include "Link.h"
+#include "Graph.h"
 #include <List>
 #include <stdlib.h>
 /*
@@ -23,6 +24,7 @@ class Vertex
     bool wasEncountered(){return encountered;}
     std::list<Link>& getNeighboursList(){return AdjacencyList;}
     virtual ~Vertex();
+    friend class Graph;
   protected:
   private:
     // the list of neighbor vertices

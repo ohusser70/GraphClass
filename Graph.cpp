@@ -15,6 +15,27 @@ void Graph::showGraph()
     }
 }
 
+
+// initie le parcours à partir de chaque sommet (itératif)
+void Graph::DepthFirstSearchRecursive()
+{
+  for (int i =0; i< nbSommets;i++)
+    ptrSommets[i].visited=ptrSommets[i].encountered=false;
+  for (int i =0; i< nbSommets;i++)
+    VSPR(ptrSommets[i]);
+}
+
+void Graph::VSPR(Vertex& sommet)
+{
+  if (false == sommet.visited)
+  {
+    sommet.visited = true;
+    std::cout << sommet.getLabel() << std::endl;  //traitement
+    for (Link& l: sommet.AdjacencyList)
+      VSPR(l.getNeighbour() );  // appel récursif
+  }
+}
+
 bool Graph::AddLink(char linkStart, char linkEnd)
 {
     /// Look for Start Vertex
@@ -37,7 +58,7 @@ bool Graph::AddLink(char linkStart, char linkEnd)
         else
             j++;
     }
-    std::cout << "i:"<<i<< "   j:"<<j<<std::endl;
+    //std::cout << "i:"<<i<< "   j:"<<j<<std::endl;
     if ((!startNotFound)&&(!endNotFound))
     {
         ptrSommets[i].getNeighboursList().push_back(ptrSommets[j]);
