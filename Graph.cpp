@@ -25,6 +25,34 @@ void Graph::DepthFirstSearchRecursive()
     VSPR(ptrSommets[i]);
 }
 
+
+void Graph::DepthSearchIterative()
+{
+  for (int i =0; i< nbSommets;i++)
+    ptrSommets[i].visited=ptrSommets[i].encountered=false;
+  for (int i =0; i< nbSommets;i++)
+    VSPNR(ptrSommets[i]);
+}
+
+void Graph::VSPNR(Vertex& sommet)
+{
+    if (false == sommet.visited)
+    {
+      std::stack<Vertex&> pile;
+      do
+      {
+        sommet.visited= true;
+        std::cout << sommet.getLabel() << std::endl;  //traitement
+        for (Link& l: sommet.AdjacencyList)
+        {
+          if (false==l.getNeighbour().encountered) //ajout à la pile
+            pile.push(l.getNeighbour());
+        }
+        sommet=(pile.pop());
+      while (sommet)
+    }
+}
+
 void Graph::VSPR(Vertex& sommet)
 {
   if (false == sommet.visited)

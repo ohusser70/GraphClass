@@ -57,10 +57,11 @@
 1462363611 source:c:\temp\_cpp\testgit\graph.cpp
 	"Graph.h"
 
-1462363634 c:\temp\_cpp\testgit\graph.h
+1462526695 c:\temp\_cpp\testgit\graph.h
 	"Vertex.h"
 	<iostream>
 	"Link.h"
+	<stack>
 
 1462363518 c:\temp\_cpp\testgit\vertex.h
 	"Link.h"
