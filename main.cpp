@@ -1,7 +1,13 @@
+/*
+    Implémentation CPP avec des classes des Graphes et parcours de base
+
+    Cours Algorithmes II (2017), HE-ARC
+*/
 #include <iostream>
 #include <stdlib.h>   // pour les listes
 #include <List>
 #include "Graph.h"
+#include <queue>
 
 using namespace std;
 
@@ -11,29 +17,28 @@ int main()
 {
     Graph villes=MakeFilConducteur();
     villes.showGraph();
-    villes.DepthFirstSearchRecursive();
+   // cout << "PARCOURS EN PROFONDEUR RECURSIF"<<endl;
+    //villes.DepthFirstSearchRecursive(); // on peut l'excéuter 2x
+    //cout << "PARCOURS EN PROFONDEUR ITERATIF"<<endl;
+    //villes.DepthFirstSearchIterative(); // l'ordre de parcours est différent
 
-    /*
-    // range based for loop (C++11) STYLE
-    list<int> valeurs ={1,2,3,5,8,13,21,34};  //declaration et initialisation d'une liste
-    for (int i: valeurs)
-      cout << i << ", ";
-    cout <<  endl;
+    cout << "PARCOURS EN LARGEUR ITERATIF"<<endl;
+    villes.WidthFirstSearchIterative();
 
-    valeurs.push_back(55);
-    valeurs.push_back(89);
+    queue <int> file;
+    file.push(1);file.push(2);file.push(3);file.push(5);file.push(8);
+    while (!file.empty())
+    {
+        cout <<  file.front() << ", ";
+        file.pop();
+    }
 
-    // OLD STYLE
-    list<int>::iterator it=valeurs.begin();
-    for(; it != valeurs.end();it++)
-      cout << *it << "--";
-    cout <<  endl;
-*/
     return 0;
 }
 
 Graph MakeFilConducteur()
 {
+    ///construction d'un graphe avec 11 sommets(défaut) 'A', 'B', ...,'K'
     Graph filConducteur;
     filConducteur.AddLink('A','B');
     filConducteur.AddLink('A','F');

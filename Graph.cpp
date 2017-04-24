@@ -1,39 +1,16 @@
 #include "Graph.h"
+#include <stack>
+#include <queue>
 
-void Graph::showGraph()
+/// Construction, edition, destruction
+Graph::Graph(int nb) : nbSommets(nb)
 {
-    for (int i=0;i<nbSommets;i++)
-    {
-        char c = (ptrSommets+i)->wasVisited() ? 'X':' ';
-        std::cout << "[" << c << "]";
-        c = (ptrSommets+i)->wasEncountered() ? 'X':' ';
-        std::cout << "[" << c << "]  ";
-        std::cout << (ptrSommets+i)->getLabel() << " : ";
-        for (Link& l: (ptrSommets+i)->getNeighboursList())
-            std::cout << " -- " << l.getNeighbour().getLabel();
-        std::cout << std::endl;
-    }
+  ptrSommets = new Vertex[nbSommets];
 }
 
-
-// initie le parcours à partir de chaque sommet (itératif)
-void Graph::DepthFirstSearchRecursive()
+Graph::~Graph()
 {
-  for (int i =0; i< nbSommets;i++)
-    ptrSommets[i].visited=ptrSommets[i].encountered=false;
-  for (int i =0; i< nbSommets;i++)
-    VSPR(ptrSommets[i]);
-}
-
-void Graph::VSPR(Vertex& sommet)
-{
-  if (false == sommet.visited)
-  {
-    sommet.visited = true;
-    std::cout << sommet.getLabel() << std::endl;  //traitement
-    for (Link& l: sommet.AdjacencyList)
-      VSPR(l.getNeighbour() );  // appel récursif
-  }
+  delete [] ptrSommets;
 }
 
 bool Graph::AddLink(char linkStart, char linkEnd)
@@ -67,12 +44,136 @@ bool Graph::AddLink(char linkStart, char linkEnd)
     return false;
 }
 
-Graph::Graph(int nb) : nbSommets(nb)
+
+/// UTILITAIRES
+
+void Graph::showGraph() const
 {
-  ptrSommets = new Vertex[nbSommets];
+    for (int i=0;i<nbSommets;i++)
+    {
+        char c = (ptrSommets+i)->wasVisited() ? 'X':' ';
+        std::cout << "[" << c << "]";
+        c = (ptrSommets+i)->wasEncountered() ? 'X':' ';
+        std::cout << "[" << c << "]  ";
+        std::cout << (ptrSommets+i)->getLabel() << " : ";
+        for (Link& l: (ptrSommets+i)->getNeighboursList())
+            std::cout << " -- " << l.getNeighbour().getLabel();
+        std::cout << std::endl;
+    }
 }
 
-Graph::~Graph()
+
+
+/// PARCOURS
+
+// initie le parcours à partir de chaque sommet (itératif)
+void Graph::DepthFirstSearchRecursive()
 {
-  delete [] ptrSommets;
+  for (int i =0; i< nbSommets;i++)
+    ptrSommets[i].visited=ptrSommets[i].encountered=false;
+  for (int i =0; i< nbSommets;i++)
+    VSPR(ptrSommets[i]);
+}
+
+void Graph::DepthFirstSearchIterative()
+{
+  for (int i =0; i< nbSommets;i++)
+    ptrSommets[i].visited=ptrSommets[i].encountered=false;
+  for (int i =0; i< nbSommets;i++)
+    VSPNR(ptrSommets[i]);
+}
+
+void Graph::WidthFirstSearchIterative()
+{
+  for (int i =0; i< nbSommets;i++)
+    ptrSommets[i].visited=ptrSommets[i].encountered=false;
+  for (int i =0; i< nbSommets;i++)
+    VSLNR(ptrSommets[i]);
+}
+
+void Graph::VSPR(Vertex& sommet)
+{
+  if (false == sommet.visited)
+  {
+    sommet.visited = true;
+    std::cout << sommet.getLabel() << std::endl;  //traitement
+    for (Link& l: sommet.AdjacencyList)
+      VSPR(l.getNeighbour() );  // appel récursif
+  }
+}
+
+void Graph::VSPNR(Vertex& sommet)
+{
+  // créer PILE
+  std::stack<Vertex> pile;
+  if ((!sommet.visited)&&(!sommet.encountered))
+  {
+    sommet.visited = true;
+    pile.push(sommet);//empiler le sommet
+    while (! pile.empty())
+    {
+        Vertex& refSommet= pile.top();
+        pile.pop();
+        refSommet.visited = true;
+        std::cout << refSommet.getLabel() << std::endl;  //traitement
+        for (Link& l: refSommet.AdjacencyList)   //      pour chaque sommet voisin du sommet courant boucler
+        {
+            //std::cout<<l.getNeighbour().getLabel()<< " ";
+            if (!l.neighbourVertex.wasVisited()&&!l.neighbourVertex.wasEncountered())//si le sommet voisin n'est ni rencontré ni visité alors
+            {
+                l.neighbourVertex.encountered = true;
+                pile.push(l.neighbourVertex);
+            }
+        }
+    }
+  }
+}
+
+void Graph::VSLNR(Vertex& sommet)
+{
+  // créer FILE
+  std::queue<Vertex> file;
+  if ((!sommet.visited)&&(!sommet.encountered))
+  {
+    sommet.visited = true;
+    file.push(sommet); //enfiler le sommet
+    std::cout << 'A';
+    while (!file.empty())
+    {
+        Vertex& refSommet= file.front();
+        file.pop();
+        refSommet.visited = true;
+        std::cout << "TRAITEMENT DE " << refSommet.getLabel() << std::endl;  //traitement
+        for (Link& l: refSommet.getNeighboursList())   //      pour chaque sommet voisin du sommet courant boucler
+        {
+            std::cout << '.';
+            if (!l.neighbourVertex.wasEncountered())//si le sommet voisin n'est ni rencontré ni visité alors
+            {
+                l.neighbourVertex.encountered = true;
+                std::cout << "AJOUT DE " << l.neighbourVertex.getLabel() << std::endl;  //traitement
+                file.push(l.neighbourVertex);
+            }
+        }
+    }
+  }
+}
+
+void Graph::ParcoursGeneralise()
+{
+    for (int i=0; i<nbSommets;i++)
+    {
+        ptrSommets[i].visited = false;
+        ptrSommets[i].encountered = false;
+    }
+    for (int i=0; i<nbSommets;i++)
+    {
+        VSG(ptrSommets[i]);
+    }
+}
+
+void Graph::VSG(Vertex& startVertex)
+{
+    startVertex.encountered = true;
+
+
 }
